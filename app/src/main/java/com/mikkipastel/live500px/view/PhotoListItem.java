@@ -5,12 +5,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 import com.mikkipastel.live500px.R;
 
 public class PhotoListItem extends BaseCustomViewGroup {
+
+    ImageView image;
+    TextView textName;
+    TextView textDescription;
 
     public PhotoListItem(Context context) {
         super(context);
@@ -46,6 +52,9 @@ public class PhotoListItem extends BaseCustomViewGroup {
 
     private void initInstances() {
         // findViewById here
+        image = findViewById(R.id.image);
+        textName = findViewById(R.id.textName);
+        textDescription = findViewById(R.id.textDescription);
     }
 
     private void initWithAttrs(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -93,5 +102,17 @@ public class PhotoListItem extends BaseCustomViewGroup {
                 MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
         setMeasuredDimension(width, height);
+    }
+
+    public void setImageUrl(String url) {
+        // TODO: load image
+    }
+
+    public void setTextName(String name) {
+        textName.setText(name);
+    }
+
+    public void setTextDescription(String description) {
+        textDescription.setText(description);
     }
 }

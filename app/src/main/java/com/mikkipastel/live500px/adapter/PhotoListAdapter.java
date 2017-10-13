@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.mikkipastel.live500px.dao.PhotoItemDao;
 import com.mikkipastel.live500px.manager.PhotoListManager;
 import com.mikkipastel.live500px.view.PhotoListItem;
 
@@ -19,7 +20,7 @@ public class PhotoListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return PhotoListManager.getInstance().getDao().getData().get(position);
     }
 
     @Override
@@ -34,6 +35,12 @@ public class PhotoListAdapter extends BaseAdapter {
             item = (PhotoListItem) convertView;
         else
             item = new PhotoListItem(parent.getContext());
+
+        PhotoItemDao dao = (PhotoItemDao) getItem(position);
+        item.setImageUrl(dao.getImageUrl());
+        item.setTextName(dao.getCaption());
+        item.setTextDescription(dao.getUsername() + "\n" + dao.getCamera());
+
         return item;
     }
 }
