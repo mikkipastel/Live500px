@@ -8,8 +8,6 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="picture"
-        android:src="@drawable/mock"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -26,8 +24,7 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="24sp"
-            android:textColor="#ffffff"
-            android:text="header"/>
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/textDescription"
@@ -36,8 +33,7 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="18sp"
-            android:textColor="#ffffff"
-            android:text="description"/>
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 
