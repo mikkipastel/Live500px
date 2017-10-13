@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/drawable-v21/abc_edit_text_material.xml"
+    }
+]

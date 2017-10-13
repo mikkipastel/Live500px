@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/src/release/shaders"/></dataSet></merger>

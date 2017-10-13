@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/fungjai/Documents/playground_android/Live500px/TheCheeseLibrary/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/fungjai/.android/build-cache/60e23dc992fb02f827da7b13e5bf32368a1b0e1e/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    }
+]
