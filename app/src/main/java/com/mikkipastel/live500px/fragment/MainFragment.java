@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
@@ -55,13 +56,13 @@ public class MainFragment extends Fragment {
             public void onResponse(Call<PhotoItemCollectionDao> call, Response<PhotoItemCollectionDao> response) {
                 if (response.isSuccessful()) {
                     PhotoItemCollectionDao dao = response.body();
-                    Toast.makeText(getActivity(),
+                    Toast.makeText(Contextor.getInstance().getContext(),
                             dao.getData().get(0).getCaption(),
                             Toast.LENGTH_SHORT)
                             .show();
                 } else {
                     try {
-                        Toast.makeText(getActivity(),
+                        Toast.makeText(Contextor.getInstance().getContext(),
                                 response.errorBody().string(),
                                 Toast.LENGTH_SHORT)
                                 .show();
@@ -73,7 +74,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onFailure(Call<PhotoItemCollectionDao> call, Throwable t) {
-                Toast.makeText(getActivity(),
+                Toast.makeText(Contextor.getInstance().getContext(),
                         t.toString(),
                         Toast.LENGTH_SHORT)
                         .show();
