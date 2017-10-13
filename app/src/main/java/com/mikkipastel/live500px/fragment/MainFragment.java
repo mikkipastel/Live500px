@@ -59,10 +59,10 @@ public class MainFragment extends Fragment {
                     PhotoItemCollectionDao dao = response.body();
                     PhotoListManager.getInstance().setDao(dao);
                     listAdapter.notifyDataSetChanged();
-                    Toast.makeText(Contextor.getInstance().getContext(),
-                            dao.getData().get(0).getCaption(),
-                            Toast.LENGTH_SHORT)
-                            .show();
+//                    Toast.makeText(Contextor.getInstance().getContext(),
+//                            dao.getData().get(0).getCaption(),
+//                            Toast.LENGTH_SHORT)
+//                            .show();
                 } else {
                     try {
                         Toast.makeText(Contextor.getInstance().getContext(),
