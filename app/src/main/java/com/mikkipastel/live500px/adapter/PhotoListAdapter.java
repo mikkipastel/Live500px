@@ -24,6 +24,11 @@ public class PhotoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return new PhotoListItem(parent.getContext());
+        PhotoListItem item;
+        if (convertView != null)
+            item = (PhotoListItem) convertView;
+        else
+            item = new PhotoListItem(parent.getContext());
+        return item;
     }
 }
