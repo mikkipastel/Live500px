@@ -13,6 +13,7 @@ import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
 import com.mikkipastel.live500px.manager.HttpManager;
+import com.mikkipastel.live500px.manager.PhotoListManager;
 
 import java.io.IOException;
 
@@ -56,6 +57,8 @@ public class MainFragment extends Fragment {
             public void onResponse(Call<PhotoItemCollectionDao> call, Response<PhotoItemCollectionDao> response) {
                 if (response.isSuccessful()) {
                     PhotoItemCollectionDao dao = response.body();
+                    PhotoListManager.getInstance().setDao(dao);
+                    listAdapter.notifyDataSetChanged();
                     Toast.makeText(Contextor.getInstance().getContext(),
                             dao.getData().get(0).getCaption(),
                             Toast.LENGTH_SHORT)
