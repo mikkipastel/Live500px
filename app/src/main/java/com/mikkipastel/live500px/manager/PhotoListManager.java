@@ -1,10 +1,12 @@
 package com.mikkipastel.live500px.manager;
 
-
 import android.content.Context;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
+import com.mikkipastel.live500px.dao.PhotoItemDao;
+
+import java.util.ArrayList;
 
 public class PhotoListManager {
 
@@ -21,6 +23,14 @@ public class PhotoListManager {
 
     public void setDao(PhotoItemCollectionDao dao) {
         this.dao = dao;
+    }
+
+    public void insertDaoAtTopPosition(PhotoItemCollectionDao newDao) {
+        if (dao == null)
+            dao = new PhotoItemCollectionDao();
+        if (dao.getData() == null)
+            dao.setData(new ArrayList<PhotoItemDao>());
+        dao.getData().addAll(0, newDao.getData());
     }
 
     public int getMaximumId() {
