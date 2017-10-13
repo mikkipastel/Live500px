@@ -5,10 +5,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.mikkipastel.live500px.R;
+import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 
 public class MainFragment extends Fragment {
+
+    ListView listView;
+    PhotoListAdapter listAdapter;
 
     public MainFragment() {
         super();
@@ -31,6 +36,9 @@ public class MainFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+        listView = rootView.findViewById(R.id.listView);
+        listAdapter = new PhotoListAdapter();
+        listView.setAdapter(listAdapter);
     }
 
     @Override
