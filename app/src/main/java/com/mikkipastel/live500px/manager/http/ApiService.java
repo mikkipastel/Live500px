@@ -1,11 +1,11 @@
 package com.mikkipastel.live500px.manager.http;
 
-import java.util.Objects;
+import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
 
 public interface ApiService {
     @POST("list")
-    Call<Objects> loadPhotoList();
+    Call<PhotoItemCollectionDao> loadPhotoList();
 }
