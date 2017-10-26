@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class MainFragment extends Fragment {
 
     PhotoListManager photoListManager;
 
+    Button btnNewPhoto;
+
     public MainFragment() {
         super();
     }
@@ -53,6 +56,14 @@ public class MainFragment extends Fragment {
 
     private void initInstances(View rootView) {
         photoListManager = new PhotoListManager();
+        btnNewPhoto = rootView.findViewById(R.id.btnNewPhoto);
+        btnNewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.smoothScrollToPosition(0);
+                hideButtonNewPhotos();
+            }
+        });
         // Init 'View' instance(s) with rootView.findViewById here
         listView = rootView.findViewById(R.id.listView);
         listAdapter = new PhotoListAdapter();
@@ -119,6 +130,10 @@ public class MainFragment extends Fragment {
                     listAdapter.increaseLastPosition(additionalSize);
                     listView.setSelectionFromTop(firstVisiblePosition + additionalSize,
                             top);
+                    if (additionalSize > 0)
+                        showButtonNewPhotos();
+                } else {
+
                 }
 
                 Toast.makeText(Contextor.getInstance().getContext(),
@@ -190,5 +205,13 @@ public class MainFragment extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
+    }
+
+    public void showButtonNewPhotos() {
+        btnNewPhoto.setVisibility(View.VISIBLE);
+    }
+
+    public void hideButtonNewPhotos() {
+        btnNewPhoto.setVisibility(View.GONE);
     }
 }
