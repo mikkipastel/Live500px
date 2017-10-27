@@ -12,4 +12,7 @@ public interface ApiService {
 
     @POST("list/after/{id}")
     Call<PhotoItemCollectionDao> loadPhotoListAfterId(@Path("id") int id);
+
+    @POST("list/before/{id}")
+    Call<PhotoItemCollectionDao> loadPhotoListBeforeId(@Path("id") int id);
 }
