@@ -1,6 +1,7 @@
 package com.mikkipastel.live500px.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -54,6 +55,16 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        photoListManager = new PhotoListManager();
+
+        if (savedInstanceState != null)
+            onRestoreSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -62,8 +73,6 @@ public class MainFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
-        photoListManager = new PhotoListManager();
-        
         btnNewPhoto = rootView.findViewById(R.id.btnNewPhoto);
         btnNewPhoto.setOnClickListener(buttonClickListener);
 
@@ -131,6 +140,12 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Save Instance State here
+
+        // TODO: save photoListManager to outstate
+    }
+
+    private void onRestoreSaveInstanceState(Bundle savedInstanceState) {
+        // Restore Instant State here
     }
 
     /*
@@ -139,9 +154,6 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            // Restore Instance State here
-        }
     }
 
     private void showButtonNewPhotos() {
