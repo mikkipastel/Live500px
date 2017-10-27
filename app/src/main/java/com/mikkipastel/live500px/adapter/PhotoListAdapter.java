@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
 import com.mikkipastel.live500px.dao.PhotoItemDao;
+import com.mikkipastel.live500px.datatype.MutableInteger;
 import com.mikkipastel.live500px.manager.PhotoListManager;
 import com.mikkipastel.live500px.view.PhotoListItem;
 
@@ -17,7 +18,11 @@ public class PhotoListAdapter extends BaseAdapter {
 
     PhotoItemCollectionDao dao;
 
-    int lastPosition = -1;
+    MutableInteger lastPositionInteger;
+
+    public PhotoListAdapter(MutableInteger lastPositionInteger) {
+        this.lastPositionInteger = lastPositionInteger;
+    }
 
     public void setDao(PhotoItemCollectionDao dao) {
         this.dao = dao;
@@ -76,17 +81,17 @@ public class PhotoListAdapter extends BaseAdapter {
         item.setTextName(dao.getCaption());
         item.setTextDescription(dao.getUsername() + "\n" + dao.getCamera());
 
-        if (position > lastPosition) {
+        if (position > lastPositionInteger.getValue()) {
             Animation anim = AnimationUtils.loadAnimation(parent.getContext(),
                     R.anim.up_from_bottom);
             item.startAnimation(anim);
-            lastPosition = position;
+            lastPositionInteger.setValue(position);
         }
 
         return item;
     }
 
     public void increaseLastPosition(int amount) {
-        lastPosition += amount;
+        lastPositionInteger.setValue(lastPositionInteger.getValue() + amount);
     }
 }

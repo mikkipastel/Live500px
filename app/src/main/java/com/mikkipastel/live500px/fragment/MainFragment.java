@@ -19,6 +19,7 @@ import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
+import com.mikkipastel.live500px.datatype.MutableInteger;
 import com.mikkipastel.live500px.manager.HttpManager;
 import com.mikkipastel.live500px.manager.PhotoListManager;
 
@@ -42,6 +43,8 @@ public class MainFragment extends Fragment {
 
     boolean isLoadMore = false;
 
+    MutableInteger lastPositionInteger;
+
     // Function
     public MainFragment() {
         super();
@@ -58,10 +61,16 @@ public class MainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        photoListManager = new PhotoListManager();
+        init(savedInstanceState);
 
         if (savedInstanceState != null)
             onRestoreSaveInstanceState(savedInstanceState);
+    }
+
+    private void init(Bundle savedInstanceState) {
+        photoListManager = new PhotoListManager();
+        lastPositionInteger = new MutableInteger(-1);
+
     }
 
     @Override
@@ -78,7 +87,7 @@ public class MainFragment extends Fragment {
 
         // Init 'View' instance(s) with rootView.findViewById here
         listView = rootView.findViewById(R.id.listView);
-        listAdapter = new PhotoListAdapter();
+        listAdapter = new PhotoListAdapter(lastPositionInteger);
         listAdapter.setDao(photoListManager.getDao());
         listView.setAdapter(listAdapter);
 
@@ -144,6 +153,8 @@ public class MainFragment extends Fragment {
         // Save Instance State here
         outState.putBundle("photoListManager",
                 photoListManager.onSaveInstanceState());
+        outState.putBundle("lastPositionInteger",
+                lastPositionInteger.onSaveInstanceState());
 
     }
 
@@ -151,6 +162,8 @@ public class MainFragment extends Fragment {
         // Restore Instant State here
         photoListManager.onRestoreSaveInstanceState(
                 savedInstanceState.getBundle("photoListManager"));
+        lastPositionInteger.onRestoreSaveInstanceState(
+                savedInstanceState.getBundle("lastPositionInteger"));
     }
 
     /*
