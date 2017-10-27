@@ -275,8 +275,6 @@ public class MainFragment extends Fragment {
                             top);
                     if (additionalSize > 0)
                         showButtonNewPhotos();
-                } else {
-
                 }
 
                 showToast("Load Complete");
