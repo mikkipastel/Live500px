@@ -200,7 +200,7 @@ public class MainFragment extends Fragment {
             return;
         isLoadMore = true;
 
-        int minId = photoListManager.getMaximumId();
+        int minId = photoListManager.getMinimumId();
         Call<PhotoItemCollectionDao> call = HttpManager.getInstance()
                 .getService()
                 .loadPhotoListBeforeId(minId);
