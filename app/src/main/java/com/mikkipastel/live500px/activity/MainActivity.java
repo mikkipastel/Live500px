@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initInstances() {
-        toolbar = (Toolbar) findViewById(R.id.toolBar);
+        toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 MainActivity.this,
