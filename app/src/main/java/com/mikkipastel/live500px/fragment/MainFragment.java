@@ -68,17 +68,18 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        initInstances(rootView);
+        initInstances(rootView, savedInstanceState);
         return rootView;
     }
 
-    private void initInstances(View rootView) {
+    private void initInstances(View rootView, Bundle savedInstanceState) {
         btnNewPhoto = rootView.findViewById(R.id.btnNewPhoto);
         btnNewPhoto.setOnClickListener(buttonClickListener);
 
         // Init 'View' instance(s) with rootView.findViewById here
         listView = rootView.findViewById(R.id.listView);
         listAdapter = new PhotoListAdapter();
+        listAdapter.setDao(photoListManager.getDao());
         listView.setAdapter(listAdapter);
 
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
@@ -86,7 +87,8 @@ public class MainFragment extends Fragment {
 
         listView.setOnScrollListener(listViewScrollListener);
 
-        refreshData();
+        if (savedInstanceState == null)
+            refreshData();
     }
 
     private void refreshData() {
@@ -140,12 +142,15 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Save Instance State here
+        outState.putBundle("photoListManager",
+                photoListManager.onSaveInstanceState());
 
-        // TODO: save photoListManager to outstate
     }
 
     private void onRestoreSaveInstanceState(Bundle savedInstanceState) {
         // Restore Instant State here
+        photoListManager.onRestoreSaveInstanceState(
+                savedInstanceState.getBundle("photoListManager"));
     }
 
     /*

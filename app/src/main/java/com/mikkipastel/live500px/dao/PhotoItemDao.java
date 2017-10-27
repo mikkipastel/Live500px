@@ -1,10 +1,13 @@
 package com.mikkipastel.live500px.dao;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class PhotoItemDao {
+public class PhotoItemDao implements Parcelable {
     @SerializedName("id")
     private int id;
     @SerializedName("link")
@@ -35,6 +38,60 @@ public class PhotoItemDao {
     private String shutterSpeed;
     @SerializedName("aperture")
     private String aperture;
+
+    public PhotoItemDao() {
+
+    }
+
+    protected PhotoItemDao(Parcel in) {
+        id = in.readInt();
+        link = in.readString();
+        imageUrl = in.readString();
+        caption = in.readString();
+        userId = in.readInt();
+        username = in.readString();
+        profilePicture = in.readString();
+        tags = in.createStringArrayList();
+        camera = in.readString();
+        focalLength = in.readString();
+        iso = in.readString();
+        shutterSpeed = in.readString();
+        aperture = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(link);
+        dest.writeString(imageUrl);
+        dest.writeString(caption);
+        dest.writeInt(userId);
+        dest.writeString(username);
+        dest.writeString(profilePicture);
+        dest.writeStringList(tags);
+        dest.writeString(camera);
+        dest.writeString(focalLength);
+        dest.writeString(iso);
+        dest.writeString(shutterSpeed);
+        dest.writeString(aperture);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<PhotoItemDao> CREATOR = new Creator<PhotoItemDao>() {
+        @Override
+        public PhotoItemDao createFromParcel(Parcel in) {
+            return new PhotoItemDao(in);
+        }
+
+        @Override
+        public PhotoItemDao[] newArray(int size) {
+            return new PhotoItemDao[size];
+        }
+    };
 
     public int getId() {
         return id;
