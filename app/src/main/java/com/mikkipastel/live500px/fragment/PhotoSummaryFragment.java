@@ -6,13 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.dao.PhotoItemDao;
 
 public class PhotoSummaryFragment extends Fragment {
 
     PhotoItemDao dao;
+
+    ImageView image;
+    TextView name;
+    TextView description;
 
     public PhotoSummaryFragment() {
         super();
@@ -55,6 +63,17 @@ public class PhotoSummaryFragment extends Fragment {
         // Init 'View' instance(s) with rootView.findViewById here
         // Note: State of variable initialized here could not be saved
         //       in onSavedInstanceState
+        image = rootView.findViewById(R.id.image);
+        name = rootView.findViewById(R.id.textName);
+        description = rootView.findViewById(R.id.textDescription);
+
+        name.setText(dao.getCaption());
+        description.setText(dao.getUsername() + "\n" + dao.getCamera());
+        Glide.with(PhotoSummaryFragment.this)
+                .load(dao.getImageUrl())
+                .placeholder(R.drawable.loading)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(image);
     }
 
     @Override
