@@ -3,6 +3,7 @@ package com.mikkipastel.live500px.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mikkipastel.live500px.R;
@@ -30,6 +31,12 @@ public class MoreInfoActivity extends AppCompatActivity {
     private void initInstance() {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_more_info, menu);
+        return true;
     }
 
     @Override
