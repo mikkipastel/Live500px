@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Frag
     @Override
     public void onItemClicked(PhotoItemDao dao) {
         Intent intent = new Intent(MainActivity.this, MoreInfoActivity.class);
+        intent.putExtra("dao", dao);
         startActivity(intent);
     }
 }

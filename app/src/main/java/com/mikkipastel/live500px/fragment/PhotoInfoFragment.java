@@ -8,16 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mikkipastel.live500px.R;
+import com.mikkipastel.live500px.dao.PhotoItemDao;
 
 public class PhotoInfoFragment extends Fragment {
+
+    PhotoItemDao dao;
 
     public PhotoInfoFragment() {
         super();
     }
 
-    public static PhotoInfoFragment newInstance() {
+    public static PhotoInfoFragment newInstance(PhotoItemDao dao) {
         PhotoInfoFragment fragment = new PhotoInfoFragment();
         Bundle args = new Bundle();
+        args.putParcelable("dao", dao);
         fragment.setArguments(args);
         return fragment;
     }
@@ -26,6 +30,8 @@ public class PhotoInfoFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
+
+        dao = getArguments().getParcelable("dao");
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);

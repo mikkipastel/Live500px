@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.mikkipastel.live500px.R;
+import com.mikkipastel.live500px.dao.PhotoItemDao;
 import com.mikkipastel.live500px.fragment.MoreInfoFragment;
 
 public class MoreInfoActivity extends AppCompatActivity {
@@ -17,9 +18,11 @@ public class MoreInfoActivity extends AppCompatActivity {
         
         initInstance();
 
+        PhotoItemDao dao = getIntent().getParcelableExtra("dao");
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, MoreInfoFragment.newInstance())
+                    .add(R.id.contentContainer, MoreInfoFragment.newInstance(dao))
                     .commit();
         }
     }
