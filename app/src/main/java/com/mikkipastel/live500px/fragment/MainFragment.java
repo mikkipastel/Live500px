@@ -1,6 +1,7 @@
 package com.mikkipastel.live500px.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,12 +14,14 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.mikkipastel.live500px.R;
+import com.mikkipastel.live500px.activity.MoreInfoActivity;
 import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
 import com.mikkipastel.live500px.datatype.MutableInteger;
@@ -95,6 +98,7 @@ public class MainFragment extends Fragment {
         listAdapter = new PhotoListAdapter(lastPositionInteger);
         listAdapter.setDao(photoListManager.getDao());
         listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(listViewItemClickListner);
 
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(pullToRefreshListener);
@@ -232,6 +236,14 @@ public class MainFragment extends Fragment {
                 }
 
             }
+        }
+    };
+
+    final AdapterView.OnItemClickListener listViewItemClickListner = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(getContext(), MoreInfoActivity.class);
+            startActivity(intent);
         }
     };
     

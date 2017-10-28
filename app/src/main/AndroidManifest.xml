@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MoreInfoActivity"
+            android:theme="@style/AppThemeWithActionBar">
+        </activity>
     </application>
 
     <!--config glide to high def photo-->
