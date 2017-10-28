@@ -1,6 +1,7 @@
 package com.mikkipastel.live500px.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -75,18 +76,11 @@ public class MainFragment extends Fragment {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
 
-        File dir = getContext().getCacheDir();
-        Log.d("storage", String.valueOf(dir));
-        File file = new File(dir, "test.txt");
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write("Hello World".getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SharedPreferences pref = getContext().getSharedPreferences("dummy",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("hello", "world");
+        editor.apply();
 
     }
 
