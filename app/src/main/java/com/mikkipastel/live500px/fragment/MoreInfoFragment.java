@@ -3,13 +3,18 @@ package com.mikkipastel.live500px.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.mikkipastel.live500px.R;
 
 public class MoreInfoFragment extends Fragment {
+
+    ViewPager viewPager;
 
     public MoreInfoFragment() {
         super();
@@ -49,6 +54,31 @@ public class MoreInfoFragment extends Fragment {
         // Init 'View' instance(s) with rootView.findViewById here
         // Note: State of variable initialized here could not be saved
         //       in onSavedInstanceState
+        viewPager = rootView.findViewById(R.id.viewPager);
+        viewPager.setAdapter(new PagerAdapter() {
+            @Override
+            public int getCount() {
+                return 3;
+            }
+
+            @Override
+            public boolean isViewFromObject(View view, Object object) {
+                return view == object;
+            }
+
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                Button btn = new Button(container.getContext());
+                btn.setText("position: " + position);
+                container.addView(btn);
+                return btn;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                container.removeView((View) object);
+            }
+        });
     }
 
     @Override
