@@ -78,9 +78,7 @@ public class MainFragment extends Fragment {
 
         SharedPreferences pref = getContext().getSharedPreferences("dummy",
                 Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("hello", "world");
-        editor.apply();
+        String value = pref.getString("hello", null);
 
     }
 
