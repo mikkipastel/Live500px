@@ -1,13 +1,10 @@
 package com.mikkipastel.live500px.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +21,11 @@ import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.activity.MoreInfoActivity;
 import com.mikkipastel.live500px.adapter.PhotoListAdapter;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
+import com.mikkipastel.live500px.dao.PhotoItemDao;
 import com.mikkipastel.live500px.datatype.MutableInteger;
 import com.mikkipastel.live500px.manager.HttpManager;
 import com.mikkipastel.live500px.manager.PhotoListManager;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -38,6 +33,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainFragment extends Fragment {
+
+    public interface FragmentListener {
+        void onItemClicked(PhotoItemDao dao);
+    }
 
     // Variable
     ListView listView;
@@ -242,8 +241,10 @@ public class MainFragment extends Fragment {
     final AdapterView.OnItemClickListener listViewItemClickListner = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getContext(), MoreInfoActivity.class);
-            startActivity(intent);
+            if (position < photoListManager.getCount()) {
+                FragmentListener listener = (FragmentListener) getActivity();
+                listener.onItemClicked(photoListManager.getDao().getData().get(position));
+            }
         }
     };
     
