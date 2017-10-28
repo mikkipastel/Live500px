@@ -1,8 +1,10 @@
 package com.mikkipastel.live500px.manager;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.google.gson.Gson;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.mikkipastel.live500px.dao.PhotoItemCollectionDao;
 import com.mikkipastel.live500px.dao.PhotoItemDao;
@@ -16,6 +18,7 @@ public class PhotoListManager {
 
     public PhotoListManager() {
         mContext = Contextor.getInstance().getContext();
+        loadCache();
     }
 
     public PhotoItemCollectionDao getDao() {
@@ -24,6 +27,7 @@ public class PhotoListManager {
 
     public void setDao(PhotoItemCollectionDao dao) {
         this.dao = dao;
+        saveCache();
     }
 
     public void insertDaoAtTopPosition(PhotoItemCollectionDao newDao) {
@@ -32,6 +36,7 @@ public class PhotoListManager {
         if (dao.getData() == null)
             dao.setData(new ArrayList<PhotoItemDao>());
         dao.getData().addAll(0, newDao.getData());
+        saveCache();
     }
 
     public void appendDaoAtBottomPosition(PhotoItemCollectionDao newDao) {
@@ -40,6 +45,7 @@ public class PhotoListManager {
         if (dao.getData() == null)
             dao.setData(new ArrayList<PhotoItemDao>());
         dao.getData().addAll(dao.getData().size(), newDao.getData());
+        saveCache();
     }
 
     public int getMaximumId() {
@@ -86,5 +92,29 @@ public class PhotoListManager {
 
     public void onRestoreSaveInstanceState(Bundle savedInstanceState) {
         dao = savedInstanceState.getParcelable("dao");
+    }
+
+    private void saveCache() {
+
+        PhotoItemCollectionDao cacheDao = new PhotoItemCollectionDao();
+        if (dao != null && dao.getData() != null)
+            cacheDao.setData(dao.getData().subList(0, Math.min(20, dao.getData().size())));
+        String json = new Gson().toJson(cacheDao);
+
+        SharedPreferences pref = mContext.getSharedPreferences("photos",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("json", json);
+        editor.apply();
+    }
+
+    private void loadCache() {
+        SharedPreferences pref = mContext.getSharedPreferences("photos",
+                Context.MODE_PRIVATE);
+        String json = pref.getString("json", null);
+        if (json == null)
+            return;
+        dao = new Gson().fromJson(json, PhotoItemCollectionDao.class);
+
     }
 }

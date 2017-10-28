@@ -76,10 +76,6 @@ public class MainFragment extends Fragment {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
 
-        SharedPreferences pref = getContext().getSharedPreferences("dummy",
-                Context.MODE_PRIVATE);
-        String value = pref.getString("hello", null);
-
     }
 
     @Override
