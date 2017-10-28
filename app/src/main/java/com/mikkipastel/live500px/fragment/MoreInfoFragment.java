@@ -4,18 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
+import com.inthecheesefactory.thecheeselibrary.view.SlidingTabLayout;
 import com.mikkipastel.live500px.R;
 
 public class MoreInfoFragment extends Fragment {
 
     ViewPager viewPager;
+    private SlidingTabLayout slidingTabLayout;
 
     public MoreInfoFragment() {
         super();
@@ -75,7 +75,24 @@ public class MoreInfoFragment extends Fragment {
                         return null;
                 }
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position) {
+                    case 0:
+                        return "Summary";
+                    case 1:
+                        return "Info";
+                    case 2:
+                        return "Tags";
+                    default:
+                        return null;
+                }
+            }
         });
+
+        slidingTabLayout = rootView.findViewById(R.id.slidingTabLayout);
+        slidingTabLayout.setViewPager(viewPager);
     }
 
     @Override
