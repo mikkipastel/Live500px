@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.inthecheesefactory.thecheeselibrary.view.SlidingTabLayout;
 import com.mikkipastel.live500px.R;
 import com.mikkipastel.live500px.dao.PhotoItemDao;
+
+import java.util.zip.Inflater;
 
 public class MoreInfoFragment extends Fragment {
 
@@ -54,6 +58,7 @@ public class MoreInfoFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void init(Bundle savedInstanceState) {
         // Init Fragment level's variable(s) here
+        setHasOptionsMenu(true);
     }
 
     @SuppressWarnings("UnusedParameters")
@@ -112,4 +117,8 @@ public class MoreInfoFragment extends Fragment {
         // Restore Instance (Fragment level's variables) State here
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_more_info, menu);
+    }
 }
