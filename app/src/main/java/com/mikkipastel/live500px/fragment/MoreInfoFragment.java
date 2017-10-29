@@ -1,13 +1,17 @@
 package com.mikkipastel.live500px.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -119,6 +123,20 @@ public class MoreInfoFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_more_info, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        ShareActionProvider actionProvider = (ShareActionProvider)
+                MenuItemCompat.getActionProvider(menuItem);
+        actionProvider.setShareIntent(getShareIntent());
+    }
+
+    private Intent getShareIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Shared");
+        intent.putExtra(Intent.EXTRA_TEXT, "extra text");
+        return intent;
     }
 }
